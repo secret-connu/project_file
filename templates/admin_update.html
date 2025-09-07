@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Update Balance</h2>
+    <p>Account No: {{ user[0] }} | Name: {{ user[1] }} | Current Balance: {{ user[2] }}</p>
+    
+    <form action="{{ url_for('admin_edit', acc_no=user[0]) }}" method="post">
+        <input type="number" name="new_balance" placeholder="Enter New Balance" required>
+        <button type="submit" class="update-btn small-btn">Update</button>
+    </form>
+</div>
+{% endblock %}

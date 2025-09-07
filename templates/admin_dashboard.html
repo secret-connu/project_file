@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SRB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        // Simple search filter
+        function searchAccounts() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let table = document.getElementById("accountsTable");
+            let tr = table.getElementsByTagName("tr");
+            for (let i = 1; i < tr.length; i++) {
+                let tdName = tr[i].getElementsByTagName("td")[1];
+                let tdAcc = tr[i].getElementsByTagName("td")[0];
+                if (tdName && tdAcc) {
+                    let txtValue = tdName.textContent || tdName.innerText;
+                    let accValue = tdAcc.textContent || tdAcc.innerText;
+                    if (txtValue.toLowerCase().indexOf(input) > -1 || accValue.indexOf(input) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <input type="text" id="searchInput" onkeyup="searchAccounts()" placeholder="Search by Account No or Name">
+        <div class="dashboard-container">
+            <table id="accountsTable">
+                <thead>
+                    <tr>
+                        <th>Account No</th>
+                        <th>Name</th>
+                        <th>Balance</th>
+                        <th>Account Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in records %}
+                    <tr>
+                        <td>{{ r[0] }}</td>
+                        <td>{{ r[1] }}</td>
+                        <td>{{ r[2] }}</td>
+                        <td>{{ r[3] }}</td>
+                        <td>
+                            <a href="{{ url_for('update_account', acc_no=r[0]) }}" class="update-btn small-btn">Update</a>
+                            <form action="{{ url_for('delete_account', acc_no=r[0]) }}" method="post" style="display:inline;">
+                                <button type="submit" class="delete-btn small-btn" onclick="return confirm('Delete this account?')">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <a href="/" class="exit-btn">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SRB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div class="form-container">
+            <form action="/login" method="post">
+                <input type="number" name="acc_no" placeholder="Last 5 digits of Account Number" required>
+                <button type="submit" class="user-btn">Login</button>
+            </form>
+            <a href="/" class="exit-btn">Back</a>
+        </div>
+    </div>
+</body>
+</html>

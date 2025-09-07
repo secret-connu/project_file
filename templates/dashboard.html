@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - SRB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container dashboard-container">
+        <h2>Welcome, {{ user[1] }}</h2>
+        <p>Account No: {{ user[0] }}</p>
+        <p>Balance: {{ user[2] }}</p>
+        <p>Type: {{ user[3] }}</p>
+
+        <div class="option-container">
+            <a href="/deposit/{{ user[0] }}" class="user-btn small-btn">Deposit</a>
+            <a href="/withdraw/{{ user[0] }}" class="user-btn small-btn">Withdraw</a>
+            <a href="/" class="exit-btn small-btn">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

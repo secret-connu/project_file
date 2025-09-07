@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - SRB</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Create Account</h1>
+        <div class="form-container">
+            <form action="/signup" method="post">
+                <input type="text" name="name" placeholder="Name" required>
+                <select name="acc_type" required>
+                    <option value="">Select Account Type</option>
+                    <option value="Savings">Savings</option>
+                    <option value="Current">Current</option>
+                </select>
+                <input type="number" name="amount" placeholder="Initial Deposit" required>
+                <button type="submit" class="user-btn">Create Account</button>
+            </form>
+            <a href="/" class="exit-btn">Back</a>
+        </div>
+    </div>
+</body>
+</html>
